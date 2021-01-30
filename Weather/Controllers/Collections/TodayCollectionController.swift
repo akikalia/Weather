@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import SDWebImage
 
 class TodayCollectionController: UIViewController {
     
     
     @IBOutlet var collectionView : UICollectionView!
+    @IBOutlet var loader: UIActivityIndicatorView!
+    @IBOutlet var errorView: UIView!
+    private var cities : [String:WeatherResponse] = [:]
+    private let service = Service()
+    private var group = DispatchGroup()
+    private var error = false
     
     lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -28,15 +35,91 @@ class TodayCollectionController: UIViewController {
             UINib(nibName: "CityCell", bundle: nil),
             forCellWithReuseIdentifier: "CityCell"
         )
-        
-        fetchCities()
+        if (cities.count == 0){
+            fetchCities()
+        }
+    }
+    
+    func fetchCity(city: String){
+        group.enter()
+        service.loadWeather(for: city, type: APIType.current ) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let weatherRequst):
+                //success
+                if let name = weatherRequst.name {
+                    self.cities[name] = weatherRequst
+                }else{
+                    self.error = true
+                }
+                self.error = self.error || false
+            case .failure(_):
+                // error occured
+                self.error = true
+            }
+            self.group.leave()
+        }
     }
     func fetchCities(){
         
+        collectionView.isHidden = true
+        loader.startAnimating()
+        //todo: also process current location if permisiion accepted
+        if let cityList = UserDefaults.standard.dictionary(forKey: "cityList"){
+            for (_,city) in cityList{
+                fetchCity(city: city as! String)
+            }
+        }
+        group.notify(queue: .main){
+            self.loader.stopAnimating()
+            if (!self.error){
+                self.collectionView.isHidden = false
+                self.collectionView.reloadData()
+            }else{
+                self.errorView.isHidden = false
+            }
+        }
+    }
+    func addCity(entry: WeatherResponse){
+        if let name =  entry.name{
+            if var cityList = UserDefaults.standard.dictionary(forKey: "cityList"){
+                cityList[name] = entry
+            }
+            cities[name] = entry
+        }
+    }
+    
+    func deleteCity(city: String?){
+        if let name = city{
+            if var cityList = UserDefaults.standard.dictionary(forKey: "cityList"){
+                cityList.removeValue(forKey: name)
+            }
+            cities.removeValue(forKey: name)
+        }
+    }
+
+    func getDirection(dir: Int64) -> String{
+//        dir = dir % 360;
+        if (dir < 45 || dir >= 315 ){
+            return "N"
+        }else if (dir >= 45 &&  dir < 135 ){
+            return "E"
+        }else if (dir >= 135 && dir < 225){
+            return "S"
+        }else{
+            return "W"
+        }
+    }
+    func getCountry(code: String) -> String{
+        if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: code) {
+            return name
+        } else {
+            return code
+        }
     }
 }
 
-extension TodayCollectionController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension TodayCollectionController: UICollectionViewDelegate , UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -46,16 +129,26 @@ extension TodayCollectionController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContactCell", for: indexPath)
-        if let cellEdit: ContactCell = cell as? ContactCell{
-            cellEdit.delegate = self
-            cellEdit.name.text = getFirstName(fullName: contacts[indexPath.row].name)
-            cellEdit.fullName = contacts[indexPath.row].name ?? ""
-            cellEdit.initials.text = getInitials(name: contacts[indexPath.row].name)
-            cellEdit.number.text = contacts[indexPath.row].phone_number
-            cellEdit.id = indexPath.row
+        let cellRaw = collectionView.dequeueReusableCell(withReuseIdentifier: "CityCell", for: indexPath)
+        if let cell: CityCell = cellRaw as? CityCell{
+            let req = cities[indexPath.row]
+            cell.delegate = self
+            cell.icon.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+            cell.city = req.name ?? ""
+            cell.location.text = (req.name ?? "") + ", " + (req.sys?.country ?? "")
+            cell.descr.text = (req.main?.temp.description ?? "") + "\u{00B0}C | " + (req.weather?.description ?? "")
+            cell.cloudiness.text = req.clouds?.all.description
+
+            cell.cloudinessIcon.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+            cell.humidity.text = req.main.humidity.descriptiion
+            cell.humidityIcon.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+            cell.windSpeed.text = req.wind?.speed.description
+            cell.windSpeedIcon.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+            cell.windDirection.text = getDirection(dir: (req.wind?.deg ?? 0))
+            cell.windDirectionIcon.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+            
         }
-        return cell
+        return cellRaw
     }
     
 }
@@ -104,26 +197,24 @@ extension TodayCollectionController: UICollectionViewDelegateFlowLayout {
 
     
 }
-extension TodayCollectionController: ContactCellDelegate{
-    func contactCellDelegateLongPress(_ sender: ContactCell, id: Int, name: String?) {
+extension TodayCollectionController: CityCellDelegate{
+    func cityCellDelegateLongPress(_ sender: CityCell, name: String?) {
         let alert = UIAlertController(
-            title: "Delete Contact?",
-            message: "contact " + (name ?? "")  + " will be deleted",
+            title: "Delete City?",
+            message: "weather information of " + (name ?? "")  + " will be deleted",
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
-            self.deleteContact(index: id)
+            self.deleteCity(city: name)
         }))
         present(alert, animated: true, completion: nil)
     }
-    
-    
 }
 
 extension TodayCollectionController {
     
     struct Constants {
-        static let numCols : CGFloat = 3
+        static let numCols : CGFloat = 1
         static let spacingX: CGFloat = 12
         static let spacingY: CGFloat = 20
         struct Insets {

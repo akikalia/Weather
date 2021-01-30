@@ -25,7 +25,7 @@ class Service {
         parameters = ["":""]
     }
     
-    private func loadWeather(for city: String, type: APIType ,completion: @escaping (Result<WeatherResponse, Error>) -> ()) {
+    func loadWeather(for city: String, type: APIType ,completion: @escaping (Result<WeatherResponse, Error>) -> ()) {
         if type == .forecast{
             components.path = "/data/2.5/forecast"
             parameters = [

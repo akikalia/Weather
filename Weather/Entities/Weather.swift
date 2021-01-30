@@ -94,7 +94,12 @@ struct Wind: Codable{
     let deg: Int
 }
 struct Sys: Codable{
-    let pod: String
+    let pod: String?
+    let type: Int64?
+    let id: Int64?
+    let country: String?
+    let sunrise: Int64?
+    let sunset: Int64?
 }
 
 struct City: Codable {
