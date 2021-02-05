@@ -25,7 +25,7 @@ class Service {
         parameters = ["":""]
     }
     
-    func loadWeather(for city: String, type: APIType ,completion: @escaping (Result<WeatherResponse, Error>) -> ()) {
+    func loadWeather(for city: String, type: APIType ,completion: @escaping (Result<Any, Error>) -> ()) {
         if type == .forecast{
             components.path = "/data/2.5/forecast"
             parameters = [
@@ -35,7 +35,7 @@ class Service {
                 "cnt":"40"
             ]
         }else{
-            components.path = "/data/2.5/current"
+            components.path = "/data/2.5/weather"
             parameters = [
                 "appid": keychain.get("apiKey") ?? "",
                 "q": city,
@@ -47,10 +47,12 @@ class Service {
         }
         
         if let url = components.url {
+//            print(components.url)
             let request = URLRequest(url: url)
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
+                    print("error")
                     completion(.failure(error))
                     return
                 }
@@ -58,17 +60,30 @@ class Service {
                 if let data = data {
                     let decoder = JSONDecoder()
                     do {
-                        let result = try decoder.decode(WeatherResponse.self, from: data)
-                        completion(.success(result))
+                        print(data.debugDescription)
+                        if (type == APIType.current){
+                            let result = try decoder.decode(WeatherResponse.self, from: data)
+                            completion(.success(result))
+                            
+                        }else{
+                            let result = try decoder.decode(ForecastResponse.self, from: data)
+                            completion(.success(result))
+                            
+                        }
+                        
+                        print("success")
                     } catch {
+                        print("decoder failure")
                         completion(.failure(error))
                     }
                 } else {
+                    print("cast failure")
                     completion(.failure(ServiceError.noData))
                 }
             })
             task.resume()
         } else {
+            print ("invalid parameters")
             completion(.failure(ServiceError.invalidParameters))
         }
     }

@@ -9,6 +9,12 @@ import UIKit
 
 class DaytimeCell: UITableViewCell {
 
+    @IBOutlet var temp: UILabel!
+    @IBOutlet var time: UILabel!
+    @IBOutlet var descr: UILabel!
+    @IBOutlet var icon: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

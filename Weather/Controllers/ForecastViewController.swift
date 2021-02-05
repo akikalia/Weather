@@ -14,5 +14,16 @@ class ForecastViewController: ForecastTableController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func refreshButton(){
+        fetchForecast()
+    }
+    
 }
+
+
+extension ForecastViewController: ErrorViewDelegate{
+    func errorViewButtonTap(sender: ErrorView) {
+        fetchForecast()
+    }
+}
+

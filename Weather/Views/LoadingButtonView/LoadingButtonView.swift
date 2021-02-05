@@ -23,15 +23,17 @@ class LoadingButtonView : BaseReusableView{
     @IBOutlet var loader: UIActivityIndicatorView!
     
     override func setup() {
-        
+        loader.isHidden = true
     }
     
     func startLoading(){
+        loader.isHidden = false
         loader.startAnimating()
         buttonView.imageView?.isHidden = true
     }
     
     func stopLoading(){
+        loader.isHidden = true
         loader.stopAnimating()
         buttonView.imageView?.isHidden = false
     } 
@@ -46,10 +48,9 @@ class LoadingButtonView : BaseReusableView{
     }
 
     @IBAction func handleButtonTap() {
-        if let hidden = buttonView.imageView?.isHidden{
-            if (!hidden){
-                delegate?.loadingButtonViewDidTapButton(self)
-            }
+        if loader.isHidden{
+            startLoading()
+            delegate?.loadingButtonViewDidTapButton(self)
         }
     }
 }
