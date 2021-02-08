@@ -21,21 +21,26 @@ class LoadingButtonView : BaseReusableView{
     
     @IBOutlet var buttonView: UIButton!
     @IBOutlet var loader: UIActivityIndicatorView!
-    
+    var plusImage :UIImage?
     override func setup() {
-        loader.isHidden = true
+        plusImage = buttonView.currentImage
+        self.bringSubviewToFront(loader)
     }
     
     func startLoading(){
-        loader.isHidden = false
+        buttonView.isEnabled = false
+        buttonView.setImage(UIImage(), for: .normal)
         loader.startAnimating()
-        buttonView.imageView?.isHidden = true
     }
     
     func stopLoading(){
-        loader.isHidden = true
+        sleep(5)
+        buttonView.isEnabled = true
+        if let plusImage = plusImage{
+            buttonView.setImage(plusImage, for: .normal)
+            
+        }
         loader.stopAnimating()
-        buttonView.imageView?.isHidden = false
     } 
     
     func setColor(color: UIColor){
@@ -48,10 +53,9 @@ class LoadingButtonView : BaseReusableView{
     }
 
     @IBAction func handleButtonTap() {
-        if loader.isHidden{
-            startLoading()
-            delegate?.loadingButtonViewDidTapButton(self)
-        }
+        startLoading()
+        delegate?.loadingButtonViewDidTapButton(self)
+    
     }
 }
 

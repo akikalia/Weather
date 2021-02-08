@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CityCellDelegate: AnyObject{
-    func cityCellDelegateLongPress(_ sender: CityCell, name: String?)
+    func cityCellDelegateLongPress(_ sender: CityCell, name: String?, row: Int)
 }
 
 class CityCell: UICollectionViewCell {
@@ -22,12 +22,19 @@ class CityCell: UICollectionViewCell {
     @IBOutlet var humidity: StackViewCell!
     @IBOutlet var windSpeed: StackViewCell!
     @IBOutlet var windDirection: StackViewCell!
-    @IBOutlet var heightConstraint: NSLayoutConstraint!
+    @IBOutlet var primaryConstraint: NSLayoutConstraint!
+    @IBOutlet var cornerView: UIView!
+    @IBOutlet var gradientView: GradientView!
+    
     var top: UIColor?
     var bottom: UIColor?
     var city: String?
     
-    var row  = -1
+    var row: Int = 0{
+        didSet {
+            setColor()
+        }
+    }
     
     weak var delegate: CityCellDelegate?
     
@@ -48,11 +55,21 @@ class CityCell: UICollectionViewCell {
         windSpeed.backgroundColor = .clear
         windDirection.backgroundColor = .clear
         humidity.backgroundColor = .clear
-        self.setSecondary()
+        cornerView.backgroundColor = .clear
+        wrapperView.backgroundColor = .clear
+        setColor()
+        gradientView.setGradientBG(top: top, bottom: bottom)
+        setSecondary()
+        self.clipsToBounds = false
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-//        initialsBGView.layer.cornerRadius = initialsBGView.frame.height / 10
+        cornerView.roundCorner(heightToRadiusRatio: 13)
+        gradientView.updateGradient(top, bottom)
+    }
+    
+    
+    func setColor(){
         switch row % 3 {
         case 0:
             top = .greenStart
@@ -66,27 +83,22 @@ class CityCell: UICollectionViewCell {
         default:
             break
         }
-        wrapperView.layer.cornerRadius = wrapperView.frame.height / 18
-        wrapperView.layer.masksToBounds = true
-        wrapperView.backgroundColor = .clear
-        wrapperView.setGradientBG(top: top, bottom: bottom)
-        wrapperView.setGlow(color: top)
-        
-        
-//        wrapperView.layer.borderWidth = 1
-//        wrapperView.layer.borderColor = UIColor.lightGray.cgColor
-        
+        gradientView.updateGradient(top, bottom)
+        wrapperView.setGlow(color: bottom)
     }
+    
     func setSecondary(){
-        heightConstraint.isActive = false
+        primaryConstraint.isActive = false
     }
     func setPrimary(){
-        heightConstraint.isActive = true
+        primaryConstraint.isActive = true
+        
     }
+    
     @objc
     func handleTouchDown(_ sender: UILongPressGestureRecognizer? = nil) {
        if sender?.state == .began{
-        delegate?.cityCellDelegateLongPress(self, name: city)
+        delegate?.cityCellDelegateLongPress(self, name: city, row: row)
        }
     }
     

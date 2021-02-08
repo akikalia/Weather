@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F1E924025CD698800CD9498 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E923F25CD698800CD9498 /* Model.swift */; };
+		1F1E924325CDD0C900CD9498 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E924225CDD0C800CD9498 /* StringExtensions.swift */; };
 		1F238F4B25C9E7920094B6A7 /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F238F4A25C9E7920094B6A7 /* UINavigationControllerExtensions.swift */; };
-		1F238F4E25C9EC680094B6A7 /* UITabBarControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F238F4D25C9EC680094B6A7 /* UITabBarControllerExtensions.swift */; };
+		1F238F4E25C9EC680094B6A7 /* UITabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F238F4D25C9EC680094B6A7 /* UITabBarExtensions.swift */; };
 		1F2AEE9A25C9E22600BF5780 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AEE9925C9E22500BF5780 /* UIColorExtensions.swift */; };
 		1F2AEE9E25C9E24000BF5780 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AEE9D25C9E24000BF5780 /* UIViewExtensions.swift */; };
 		1F2AEEA125C9E25300BF5780 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AEEA025C9E25300BF5780 /* UIViewControllerExtensions.swift */; };
@@ -21,11 +23,15 @@
 		1F67B55525C360CA0060ECDC /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F67B55325C360CA0060ECDC /* CityCell.xib */; };
 		1F67B55C25C361800060ECDC /* TodayCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F67B55B25C361800060ECDC /* TodayCollectionController.swift */; };
 		1F8463CA25CC7B5700BF845C /* CustomCollectionviewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8463C925CC7B5700BF845C /* CustomCollectionviewFlowLayout.swift */; };
+		1F8AFA9D25CDE84600053DAB /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AFA9C25CDE84600053DAB /* UILabelExtensions.swift */; };
 		1FA7427725C5E24400DBC33E /* StackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA7427625C5E24400DBC33E /* StackViewCell.swift */; };
 		1FA7427B25C5E25F00DBC33E /* StackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA7427A25C5E25F00DBC33E /* StackViewCell.xib */; };
 		1FA7427E25C5E6FF00DBC33E /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA7427D25C5E6FF00DBC33E /* ErrorView.swift */; };
 		1FA7428225C5E71B00DBC33E /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA7428125C5E71B00DBC33E /* ErrorView.xib */; };
 		1FC6C3DE25C5A124003288AF /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6C3DD25C5A124003288AF /* AddCityViewController.swift */; };
+		1FD64ECD25CF2CE300180F48 /* UITabBarControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64ECC25CF2CE300180F48 /* UITabBarControllerExtensions.swift */; };
+		1FD64ED125CF44D300180F48 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64ED025CF44D300180F48 /* CustomTabBar.swift */; };
+		1FD64ED525CF5D0000180F48 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64ED425CF5D0000180F48 /* GradientView.swift */; };
 		1FDC1BF225C1521A004F5893 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC1BF125C1521A004F5893 /* AppDelegate.swift */; };
 		1FDC1BF425C1521A004F5893 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC1BF325C1521A004F5893 /* SceneDelegate.swift */; };
 		1FDC1BF625C1521A004F5893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC1BF525C1521A004F5893 /* ViewController.swift */; };
@@ -45,8 +51,10 @@
 
 /* Begin PBXFileReference section */
 		0548C3007833CAE896DB6B86 /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		1F1E923F25CD698800CD9498 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1F1E924225CDD0C800CD9498 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		1F238F4A25C9E7920094B6A7 /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
-		1F238F4D25C9EC680094B6A7 /* UITabBarControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtensions.swift; sourceTree = "<group>"; };
+		1F238F4D25C9EC680094B6A7 /* UITabBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtensions.swift; sourceTree = "<group>"; };
 		1F2AEE9925C9E22500BF5780 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		1F2AEE9D25C9E24000BF5780 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		1F2AEEA025C9E25300BF5780 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -59,11 +67,15 @@
 		1F67B55325C360CA0060ECDC /* CityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
 		1F67B55B25C361800060ECDC /* TodayCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCollectionController.swift; sourceTree = "<group>"; };
 		1F8463C925CC7B5700BF845C /* CustomCollectionviewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionviewFlowLayout.swift; sourceTree = "<group>"; };
+		1F8AFA9C25CDE84600053DAB /* UILabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		1FA7427625C5E24400DBC33E /* StackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewCell.swift; sourceTree = "<group>"; };
 		1FA7427A25C5E25F00DBC33E /* StackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StackViewCell.xib; sourceTree = "<group>"; };
 		1FA7427D25C5E6FF00DBC33E /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		1FA7428125C5E71B00DBC33E /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		1FC6C3DD25C5A124003288AF /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
+		1FD64ECC25CF2CE300180F48 /* UITabBarControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtensions.swift; sourceTree = "<group>"; };
+		1FD64ED025CF44D300180F48 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		1FD64ED425CF5D0000180F48 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1FDC1BEE25C15219004F5893 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDC1BF125C1521A004F5893 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FDC1BF325C1521A004F5893 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1E923E25CD697200CD9498 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F1E923F25CD698800CD9498 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1F2AEE9825C9E20800BF5780 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +123,10 @@
 				1F2AEE9D25C9E24000BF5780 /* UIViewExtensions.swift */,
 				1F2AEEA025C9E25300BF5780 /* UIViewControllerExtensions.swift */,
 				1F238F4A25C9E7920094B6A7 /* UINavigationControllerExtensions.swift */,
-				1F238F4D25C9EC680094B6A7 /* UITabBarControllerExtensions.swift */,
+				1F238F4D25C9EC680094B6A7 /* UITabBarExtensions.swift */,
+				1F1E924225CDD0C800CD9498 /* StringExtensions.swift */,
+				1F8AFA9C25CDE84600053DAB /* UILabelExtensions.swift */,
+				1FD64ECC25CF2CE300180F48 /* UITabBarControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,14 +222,15 @@
 		1FDC1BF025C15219004F5893 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				1F1E923E25CD697200CD9498 /* Model */,
 				1F2AEE9825C9E20800BF5780 /* Extensions */,
 				1F33C35225C1E2A8000A8F9A /* Service */,
 				1F33C35125C1E29F000A8F9A /* Entities */,
 				1FDC1C0A25C15285004F5893 /* Controllers */,
 				1FDC1C0925C15274004F5893 /* Views */,
 				1FDC1BF125C1521A004F5893 /* AppDelegate.swift */,
-				1FDC1BF325C1521A004F5893 /* SceneDelegate.swift */,
 				1FDC1BF525C1521A004F5893 /* ViewController.swift */,
+				1FDC1BF325C1521A004F5893 /* SceneDelegate.swift */,
 				1FDC1BF725C1521A004F5893 /* Main.storyboard */,
 				1FDC1BFD25C1521C004F5893 /* Assets.xcassets */,
 				1FDC1BFF25C1521C004F5893 /* LaunchScreen.storyboard */,
@@ -219,10 +243,12 @@
 		1FDC1C0925C15274004F5893 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1FD64ED025CF44D300180F48 /* CustomTabBar.swift */,
 				1FA7428025C5E70400DBC33E /* ErrorView */,
 				1FA7427525C5E22A00DBC33E /* StackViewCell */,
 				1F33C34525C1D7D3000A8F9A /* LoadingButtonView */,
 				1F33C34125C1D793000A8F9A /* BaseReusableView.swift */,
+				1FD64ED425CF5D0000180F48 /* GradientView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,22 +450,28 @@
 				1F33C34925C1D7D4000A8F9A /* LoadingButtonView.swift in Sources */,
 				1F67B52D25C3106D0060ECDC /* Service.swift in Sources */,
 				1FA7427E25C5E6FF00DBC33E /* ErrorView.swift in Sources */,
+				1F8AFA9D25CDE84600053DAB /* UILabelExtensions.swift in Sources */,
 				1FDC1BFC25C1521A004F5893 /* Weather.xcdatamodeld in Sources */,
 				1FDC1BF625C1521A004F5893 /* ViewController.swift in Sources */,
-				1F238F4E25C9EC680094B6A7 /* UITabBarControllerExtensions.swift in Sources */,
+				1F238F4E25C9EC680094B6A7 /* UITabBarExtensions.swift in Sources */,
 				1F2AEE9E25C9E24000BF5780 /* UIViewExtensions.swift in Sources */,
+				1FD64ECD25CF2CE300180F48 /* UITabBarControllerExtensions.swift in Sources */,
 				1F67B55C25C361800060ECDC /* TodayCollectionController.swift in Sources */,
 				1FDC1BF225C1521A004F5893 /* AppDelegate.swift in Sources */,
 				1F238F4B25C9E7920094B6A7 /* UINavigationControllerExtensions.swift in Sources */,
 				1FDC1C1F25C15B46004F5893 /* ForecastTableController.swift in Sources */,
 				1FA7427725C5E24400DBC33E /* StackViewCell.swift in Sources */,
 				1F67B55425C360CA0060ECDC /* CityCell.swift in Sources */,
+				1FD64ED125CF44D300180F48 /* CustomTabBar.swift in Sources */,
 				1FDC1C6425C15D78004F5893 /* DaytimeHeader.swift in Sources */,
 				1F2AEEA125C9E25300BF5780 /* UIViewControllerExtensions.swift in Sources */,
 				1FDC1BF425C1521A004F5893 /* SceneDelegate.swift in Sources */,
+				1FD64ED525CF5D0000180F48 /* GradientView.swift in Sources */,
 				1F33C34325C1D793000A8F9A /* BaseReusableView.swift in Sources */,
 				1F67B52A25C302DC0060ECDC /* Weather.swift in Sources */,
+				1F1E924025CD698800CD9498 /* Model.swift in Sources */,
 				1FDC1C0D25C15575004F5893 /* TodayViewController.swift in Sources */,
+				1F1E924325CDD0C900CD9498 /* StringExtensions.swift in Sources */,
 				1FDC1C1725C1581E004F5893 /* DaytimeCell.swift in Sources */,
 				1FC6C3DE25C5A124003288AF /* AddCityViewController.swift in Sources */,
 				1FDC1C1125C1560F004F5893 /* ForecastViewController.swift in Sources */,

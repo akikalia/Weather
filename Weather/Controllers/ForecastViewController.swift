@@ -11,6 +11,9 @@ class ForecastViewController: ForecastTableController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let gradientView = self.view as? GradientView{
+            gradientView.setGradientBG(top: .bgStart, bottom: .bgEnd)
+        }
         // Do any additional setup after loading the view.
     }
 

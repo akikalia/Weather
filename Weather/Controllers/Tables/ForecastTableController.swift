@@ -6,9 +6,9 @@
 //
 
 import UIKit
-protocol ForecastTableControllerDelegate: AnyObject{
-    func forecastTableGetCurrentCity(sender: ForecastTableController)->String?
-}
+//protocol ForecastTableControllerDelegate: AnyObject{
+//    func forecastTableGetCurrentCity(sender: ForecastTableController, completion: @escaping (ForecastResponse?)->())
+//}
 class ForecastTableController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -17,7 +17,7 @@ class ForecastTableController: UIViewController {
     private var service: Service = Service()
     private var forecast: ForecastResponse?
     private var error = false;
-    weak var delegate: ForecastTableControllerDelegate?
+//    weak var delegate: ForecastTableControllerDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -25,45 +25,82 @@ class ForecastTableController: UIViewController {
         tableView.register(UINib(nibName: "DaytimeCell", bundle: nil), forCellReuseIdentifier: "DaytimeCell")
         tableView.register(UINib(nibName: "DaytimeHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DaytimeHeader")
         tableView.showsVerticalScrollIndicator = false
+        tableView.clipsToBounds = true
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchForecast()
     }
     
-    func fetchForecast(){
+    func loadingState(){
         tableView.isHidden = true
-        loader.isHidden = false
         loader.startAnimating()
-        if let city = UserDefaults.standard.string(forKey: "current"){
-            
-            service.loadWeather(for: city, type: APIType.forecast ) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let weatherResponse):
-                    //success
-                    if let forecastResponse = weatherResponse as? ForecastResponse{
+    }
+    
+    func normalState(){
+        self.loader.stopAnimating()
+        self.errorView.isHidden = true
+        self.tableView.isHidden = false
+        self.tableView.reloadData()
+    }
+    
+    func errorState(){
+        self.loader.stopAnimating()
+        self.errorView.isHidden = false
+    }
+    
+    func fetchForecast(){
+            loadingState()
+            if let city = UserDefaults.standard.string(forKey: "current"){
+                
+                print("fetching forecast for \(city)")
+                service.loadWeather(for: city, type: APIType.forecast ) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let weatherResponse):
+                        //success
+                        if let forecastResponse = weatherResponse as? ForecastResponse{
+                            DispatchQueue.main.async {
+                                self.forecast = forecastResponse
+                                self.normalState()
+                                self.tableView.reloadData()
+                            }
+                        }
+                    case .failure(_):
+                        // error occured
                         DispatchQueue.main.async {
-                            self.loader.stopAnimating()
-                            self.loader.isHidden = true
-                            self.errorView.isHidden = true
-                            self.forecast = forecastResponse
-                            self.tableView.isHidden = false
-                            self.tableView.reloadData()
+                            self.errorState()
                         }
                     }
-                case .failure(_):
-                    // error occured
-                    DispatchQueue.main.async {
-                        self.loader.stopAnimating()
-                        self.loader.isHidden = true
-                        self.errorView.isHidden = false
-                    }
                 }
+            }else{
+                self.errorState()
             }
-        }else{
-            self.loader.stopAnimating()
-            self.loader.isHidden = true
-            self.errorView.isHidden = false
         }
-    }
+    func formatTime(time:Int64, format: String) -> String {
+            let date = Date(timeIntervalSince1970: TimeInterval.init(time))
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .current
+            dateFormatter.dateFormat = format
+            let localDate = dateFormatter.string(from: date)
+            return localDate
+        }
+//    func fetchForecast(){
+//        loadingState()
+//        delegate?.forecastTableGetCurrentCity(sender: self){ forecast in
+//            DispatchQueue.main.async {
+//                if let forecast = forecast{
+//
+//                        self.normalState()
+//                    self.forecast = forecast
+//                }else{
+//                    self.errorState()
+//                }
+//            }
+//        }
+//
+//    }
 }
 
 extension ForecastTableController : UITableViewDelegate, UITableViewDataSource {
@@ -73,13 +110,20 @@ extension ForecastTableController : UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 8
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerRaw = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DaytimeHeader")
         if let header: DaytimeHeader = headerRaw as? DaytimeHeader{
-            header.date.text = String(forecast?.list?[section].dt ?? 0)
+            let sectionInd = section*8
+            if let day = forecast?.list?[sectionInd].dt{
+                header.date.text = formatTime(time: day, format: "EEEE")
+            }
+            let backgroundView = UIView(frame: header.bounds)
+            backgroundView.backgroundColor = UIColor(white: 1, alpha: 0)
+            header.backgroundView = backgroundView
+            
         }
         return headerRaw
     }
@@ -89,8 +133,10 @@ extension ForecastTableController : UITableViewDelegate, UITableViewDataSource {
         if let cell: DaytimeCell = cellRaw as? DaytimeCell{
             let index = indexPath.section * 8 + indexPath.row
             cell.descr.text = forecast?.list?[index].weather.first?.descr
-            cell.time.text = String(forecast?.list?[index].dt ?? 0)
-            cell.temp.text = String(forecast?.list?[index].main.temp ?? 0)
+            if let time = forecast?.list?[index].dt{
+                cell.time.text = formatTime(time: time, format: "HH:mm")
+            }
+            cell.temp.text = String(format: "%.0f", forecast?.list?[index].main.temp?.rounded() ?? 0)
             if let icon = forecast?.list?[index].weather.first?.icon{
                 cell.icon.sd_setImage(with: URL(string: "https://openweathermap.org/img/wn/" + icon + "@2x.png"), placeholderImage: UIImage(named: "sun"))
             }
@@ -99,7 +145,7 @@ extension ForecastTableController : UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88
+        return 66
     }
     
 }
