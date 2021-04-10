@@ -93,6 +93,7 @@
 		1FDC1C5D25C15D2D004F5893 /* DaytimeHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaytimeHeader.xib; sourceTree = "<group>"; };
 		1FDC1C6325C15D78004F5893 /* DaytimeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaytimeHeader.swift; sourceTree = "<group>"; };
 		5D1572E626064F0FD35D94AD /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		7060A069261F1F4700681762 /* Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Weather.entitlements; sourceTree = "<group>"; };
 		D95813F88385ED40BED0F7AB /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -222,6 +223,7 @@
 		1FDC1BF025C15219004F5893 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				7060A069261F1F4700681762 /* Weather.entitlements */,
 				1F1E923E25CD697200CD9498 /* Model */,
 				1F2AEE9825C9E20800BF5780 /* Extensions */,
 				1F33C35225C1E2A8000A8F9A /* Service */,
@@ -623,7 +625,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 84KN8K9A66;
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -642,7 +646,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 84KN8K9A66;
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

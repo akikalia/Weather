@@ -11,6 +11,7 @@ extension UINavigationController{
     open override func viewDidLoad() {
         super.viewDidLoad()
         setTransparentNavbar()
+        setTitleColor(color: UIColor.white)
     }
     
     func setTransparentNavbar(){
@@ -18,5 +19,8 @@ extension UINavigationController{
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.isTranslucent = true
 
+    }
+    func setTitleColor(color: UIColor){
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
     }
 }

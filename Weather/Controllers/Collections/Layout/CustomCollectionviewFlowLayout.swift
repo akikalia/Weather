@@ -11,6 +11,7 @@ import UIKit
 
 protocol CustomCollectionViewFlowLayoutDelegate: AnyObject{
     func ccvfdidChangeCurrentPage(sender: CustomCollectionViewFlowLayout, row: Int)
+    func ccvfgetCurrentPage(sender: CustomCollectionViewFlowLayout) -> Int
 }
 
 class CustomCollectionViewFlowLayout: UICollectionViewFlowLayout {
@@ -33,10 +34,27 @@ class CustomCollectionViewFlowLayout: UICollectionViewFlowLayout {
             currentPage = min(currentPage + 1, itemsCount - 1)
         }
 
-        let updatedOffset = (itemSize.width + minimumLineSpacing) * CGFloat(currentPage)
+        let updatedOffset = newOffset()
         previousOffset = updatedOffset
         
         delegate?.ccvfdidChangeCurrentPage(sender: self, row: currentPage)
         return CGPoint(x: updatedOffset, y: proposedContentOffset.y)
     }
+    
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+        let updatedOffset = newOffset()
+        previousOffset = updatedOffset
+        return CGPoint(x: updatedOffset, y: proposedContentOffset.y)
+    }
+    
+    func newOffset() -> CGFloat{
+        return (itemSize.width + minimumLineSpacing) * CGFloat(currentPage)
+    }
+    
+    
+//    override func finalizeLayoutTransition() {
+//        super.finalizeLayoutTransition()
+//        let updatedOffset = (itemSize.width + minimumLineSpacing) * CGFloat(currentPage)
+//        previousOffset = updatedOffset
+//    }
 }

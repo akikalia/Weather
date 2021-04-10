@@ -47,6 +47,7 @@ class Model : NSObject{
                         self.cities[name] = weatherResp
                         if let completion = completion{
                             completion(name)
+                            self.group.leave()
                             return
                         }
                     }else{
@@ -202,12 +203,15 @@ extension Model : CLLocationManagerDelegate{
             case .restricted,.denied,.notDetermined:
                 print("error")
             default:
+                manager.distanceFilter = 2000
                 manager.startUpdatingLocation()
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
     }
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last
         if let location = location{

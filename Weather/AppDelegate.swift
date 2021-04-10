@@ -15,14 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UserDefaults.standard.setValue(nil, forKey: "cityList")
         if nil == UserDefaults.standard.stringArray(forKey: "cityList"){
             print("first entry")
             UserDefaults.standard.setValue([], forKey: "cityList")
             if var cityList = UserDefaults.standard.stringArray(forKey: "cityList"){
                 print("appending cities")
-                cityList.append("Tbilisi")
                 cityList.append("Baku")
+                cityList.append("Tbilisi")
                 cityList.append("London")
                 cityList.append("Yerevan")
                 

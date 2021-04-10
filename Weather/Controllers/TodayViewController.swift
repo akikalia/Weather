@@ -35,7 +35,7 @@ class TodayViewController: TodayCollectionController {
     @IBAction func addButton(){
         
         if let addCityVC = addCityVC{
-            addCityVC.modalPresentationStyle = .fullScreen
+            addCityVC.modalPresentationStyle = .overFullScreen
             self.present(addCityVC, animated: true, completion: nil)
         }
     }

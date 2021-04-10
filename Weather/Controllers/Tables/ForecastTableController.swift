@@ -136,13 +136,14 @@ extension ForecastTableController : UITableViewDelegate, UITableViewDataSource {
             if let time = forecast?.list?[index].dt{
                 cell.time.text = formatTime(time: time, format: "HH:mm")
             }
-            cell.temp.text = String(format: "%.0f", forecast?.list?[index].main.temp?.rounded() ?? 0)
+            cell.temp.text = String(format: "%.0f\u{00B0}C", forecast?.list?[index].main.temp?.rounded() ?? 0)
             if let icon = forecast?.list?[index].weather.first?.icon{
                 cell.icon.sd_setImage(with: URL(string: "https://openweathermap.org/img/wn/" + icon + "@2x.png"), placeholderImage: UIImage(named: "sun"))
             }
         }
         return cellRaw
     }
+    
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 66

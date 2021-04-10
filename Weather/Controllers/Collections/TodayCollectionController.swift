@@ -7,9 +7,6 @@
 
 import UIKit
 import SDWebImage
-
-
-
 class TodayCollectionController: UIViewController {
 
     
@@ -21,8 +18,8 @@ class TodayCollectionController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     var model = Model()
 
-    var flowLayout: CustomCollectionViewFlowLayout = {
-        let flowLayout = CustomCollectionViewFlowLayout()
+        var flowLayout: CustomCollectionViewFlowLayout = {
+            let flowLayout = CustomCollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         
         return flowLayout
@@ -32,6 +29,7 @@ class TodayCollectionController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+
         collectionView.collectionViewLayout = flowLayout
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = false
@@ -47,22 +45,38 @@ class TodayCollectionController: UIViewController {
         reload(){
             UserDefaults.standard.setValue(self.model.get(index: 0)?.name, forKey: "current")
         }
+        flowUpdate(collectionView.frame.size)
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width * Constants.widthScaleMain, height: collectionView.frame.size.height * Constants.heightScaleMain)
-        let side = (1 - Constants.widthScaleMain) * collectionView.frame.size.width / 2
-        let top =  (1 - Constants.heightScaleMain) * collectionView.frame.size.height / 2
-        flowLayout.sectionInset = UIEdgeInsets(top: top, left: side, bottom: top, right: side)
-        flowLayout.minimumInteritemSpacing = side/4
-        flowLayout.minimumLineSpacing = 0
         addButton.roundCorner(heightToRadiusRatio: 2)
+        flowUpdate(collectionView.frame.size)
+        collectionView.reloadData()
+        
     }
     
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        <#code#>
-//    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+        flowUpdate(size)
+        
+        collectionView.reloadData()
+        super.viewWillTransition(to: size, with: coordinator)
+        
+    }
+    
+    
+    
+    func flowUpdate(_ size: CGSize){
+        flowLayout.itemSize = CGSize(width: size.width * Constants.widthScaleMain, height: size.height * Constants.heightScaleMain)
+        let side = (1 - Constants.widthScaleMain) * size.width / 2
+        let top =  (1 - Constants.heightScaleMain) * size.height / 2
+        flowLayout.sectionInset = UIEdgeInsets(top: top, left: side, bottom: top, right: side)
+        flowLayout.minimumInteritemSpacing = 0//side/4
+        flowLayout.minimumLineSpacing = 0
+        
+    }
     
     func loadingState(){
         collectionView.isHidden = true
@@ -136,6 +150,10 @@ extension TodayCollectionController: UICollectionViewDelegate , UICollectionView
         return model.size()
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
     func  collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellRaw = collectionView.dequeueReusableCell(withReuseIdentifier: "CityCell", for: indexPath)
         if let cell: CityCell = cellRaw as? CityCell{
@@ -158,18 +176,21 @@ extension TodayCollectionController: UICollectionViewDelegate , UICollectionView
                     
                     if let temp = req.main?.temp{
                         if let descr = req.weather?.first?.descr{
-                            cell.descr.text = String(temp) + "\u{00B0}C | " + descr
+                            cell.descr.text = String(format: "%.0f\u{00B0}C | " + descr, temp)
+//                            cell.descr.text = String(temp) + "\u{00B0}C | " + descr
                         }
                     }
                     
-                    cell.cloudiness.value.text = req.clouds?.all.description //+ "%"
-                    cell.humidity.value.text = req.main?.humidity?.description //+ " mm"
-                    cell.windSpeed.value.text = req.wind?.speed.description //+ " km/h"
+                    cell.cloudiness.value.text = (req.clouds?.all.description ?? "") + " %"
+                    cell.humidity.value.text = (req.main?.humidity?.description ?? "") + " mm"
+                    cell.windSpeed.value.text = (Int(req.wind?.speed.rounded() ?? 0).description) + " km/h"
                     if let deg = req.wind?.deg{
                         cell.windDirection.value.text = getDirection(dir: deg)
                     }
                     if pageControl.currentPage == indexPath.row{
                         cell.setPrimary()
+                    }else{
+                        cell.setSecondary()
                     }
                 }
 //            }
@@ -206,6 +227,9 @@ extension TodayCollectionController: CustomCollectionViewFlowLayoutDelegate{
         }
         
     }
+    func ccvfgetCurrentPage(sender: CustomCollectionViewFlowLayout) -> Int {
+        return pageControl.currentPage
+    }
 }
 
 extension TodayCollectionController: ModelDelegate{
@@ -213,6 +237,7 @@ extension TodayCollectionController: ModelDelegate{
         collectionView.reloadData()
     }
 }
+
 
 extension TodayCollectionController {
 

@@ -23,8 +23,9 @@ class CityCell: UICollectionViewCell {
     @IBOutlet var windSpeed: StackViewCell!
     @IBOutlet var windDirection: StackViewCell!
     @IBOutlet var primaryConstraint: NSLayoutConstraint!
+    @IBOutlet var secondaryConstraint: NSLayoutConstraint!
     @IBOutlet var cornerView: UIView!
-    @IBOutlet var gradientView: GradientView!
+    @IBOutlet private var gradientView: GradientView!
     
     var top: UIColor?
     var bottom: UIColor?
@@ -64,11 +65,13 @@ class CityCell: UICollectionViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        cornerView.roundCorner(heightToRadiusRatio: 13)
         gradientView.updateGradient(top, bottom)
+        setRound()
     }
     
-    
+    func setRound(){
+        cornerView.roundCorner(heightToRadiusRatio: 13)
+    }
     func setColor(){
         switch row % 3 {
         case 0:
@@ -88,13 +91,25 @@ class CityCell: UICollectionViewCell {
     }
     
     func setSecondary(){
-        primaryConstraint.isActive = false
+        self.secondaryConstraint.isActive = true
+        self.primaryConstraint.isActive = false
+
+        UIView.animate(withDuration: 0.2) {
+            self.layoutIfNeeded()
+//            self.gradientView.updateGradient(nil, nil)
+            
+        }
     }
     func setPrimary(){
-        primaryConstraint.isActive = true
-        
+        self.secondaryConstraint.isActive =  false
+        self.primaryConstraint.isActive = true
+
+        UIView.animate(withDuration: 0.2) {
+            self.layoutIfNeeded()
+//            self.gradientView.updateGradient(nil, nil)
+            
+        }
     }
-    
     @objc
     func handleTouchDown(_ sender: UILongPressGestureRecognizer? = nil) {
        if sender?.state == .began{

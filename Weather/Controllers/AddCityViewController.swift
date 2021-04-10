@@ -30,7 +30,7 @@ class AddCityViewController: UIViewController{
         errorBanner.backgroundColor = .systemRed
         textField.delegate = self
         mainView.setGradientBG(top: .greenStart, bottom: .greenEnd)
-        
+        view.isOpaque = false
         
     }
     override func viewWillLayoutSubviews() {
@@ -42,11 +42,15 @@ class AddCityViewController: UIViewController{
         loader.roundCorner(heightToRadiusRatio: 2)
         loader.tintColor = .greenEnd
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterialDark)
+        let blurEffect = UIBlurEffect(style: .dark)
         blur = UIVisualEffectView(effect: blurEffect)
         blur.frame = view.bounds
         blur.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blur.alpha = 0.7
         view.addSubview(blur)
+        
+
+        view.backgroundColor = .clear
         view.bringSubviewToFront(mainView)
         view.bringSubviewToFront(errorBanner)
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTouchDown(_:)))

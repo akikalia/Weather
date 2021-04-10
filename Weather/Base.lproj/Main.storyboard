@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jw1-Mg-4wB">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jw1-Mg-4wB">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,21 +11,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Forecast View Controller-->
+        <!--Forecast-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="forecastVC" id="BYZ-38-t0r" customClass="ForecastViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="Weather" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="58N-J5-gcO">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="643"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DxZ-bl-WcW" customClass="ErrorView" customModule="Weather" customModuleProvider="target">
-                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <rect key="frame" x="87" y="248" width="240" height="240"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DxZ-bl-WcW" secondAttribute="height" multiplier="15:15" id="1M6-h3-hhx"/>
@@ -33,7 +33,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ned-dk-oqQ">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
                                 <color key="color" name="accent"/>
                             </activityIndicatorView>
                         </subviews>
@@ -51,7 +51,7 @@
                             <constraint firstItem="DxZ-bl-WcW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wxf-Af-mzo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jWq-ae-LV7">
+                    <navigationItem key="navigationItem" title="Forecast" id="jWq-ae-LV7">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="refresh" id="HVw-xn-LjJ">
                             <connections>
                                 <action selector="refreshButton" destination="BYZ-38-t0r" id="kB3-5U-zkr"/>
@@ -68,22 +68,22 @@
             </objects>
             <point key="canvasLocation" x="1833.3333333333335" y="103.79464285714285"/>
         </scene>
-        <!--Today View Controller-->
+        <!--Today-->
         <scene sceneID="RlW-Jp-kLA">
             <objects>
                 <viewController id="Fp5-pf-tvJ" customClass="TodayViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q4m-d4-18p" customClass="GradientView" customModule="Weather" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ7-UX-qPr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="616.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ7-UX-qPr" userLabel="wrapper view">
+                                <rect key="frame" x="0.0" y="44" width="414" height="546.66666666666663"/>
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="kCH-LW-6tQ">
-                                        <rect key="frame" x="145.5" y="0.0" width="123" height="28"/>
+                                        <rect key="frame" x="146.33333333333334" y="0.0" width="121.33333333333334" height="28"/>
                                     </pageControl>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jo4-Ze-Zr5">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="588.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="518.66666666666663"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fkl-il-A5s">
                                             <size key="itemSize" width="400" height="128"/>
@@ -95,6 +95,7 @@
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Jo4-Ze-Zr5" secondAttribute="trailing" id="E8Z-0X-HxC"/>
                                     <constraint firstItem="Jo4-Ze-Zr5" firstAttribute="leading" secondItem="bJ7-UX-qPr" secondAttribute="leading" id="OcY-ck-48y"/>
@@ -105,10 +106,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvs-Ik-dDH">
-                                <rect key="frame" x="0.0" y="704.5" width="414" height="118.5"/>
+                                <rect key="frame" x="0.0" y="590.66666666666663" width="414" height="106.33333333333337"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeD-v9-T8r">
-                                        <rect key="frame" x="176" y="28" width="62" height="62"/>
+                                        <rect key="frame" x="176" y="22" width="62" height="62"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="PeD-v9-T8r" secondAttribute="height" multiplier="1:1" id="1sO-ac-PBz"/>
@@ -133,7 +134,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-cD-RGe" customClass="ErrorView" customModule="Weather" customModuleProvider="target">
-                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <rect key="frame" x="87" y="248" width="240" height="240"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="U5P-Oo-M7m"/>
@@ -141,12 +142,13 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="oxh-r1-87Z">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BU8-Fd-2Wn"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <color key="backgroundColor" name="bg-gradient-start"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dvs-Ik-dDH" firstAttribute="top" secondItem="q4m-d4-18p" secondAttribute="top" priority="999" id="8G7-9w-R1X"/>
                             <constraint firstItem="bJ7-UX-qPr" firstAttribute="height" secondItem="BU8-Fd-2Wn" secondAttribute="height" multiplier="0.85" id="BOg-ry-ExO"/>
@@ -158,12 +160,12 @@
                             <constraint firstItem="hF0-cD-RGe" firstAttribute="centerX" secondItem="q4m-d4-18p" secondAttribute="centerX" id="rz5-lT-88o"/>
                             <constraint firstItem="oxh-r1-87Z" firstAttribute="centerY" secondItem="q4m-d4-18p" secondAttribute="centerY" id="tFG-Ik-EeM"/>
                             <constraint firstItem="bJ7-UX-qPr" firstAttribute="top" secondItem="BU8-Fd-2Wn" secondAttribute="top" id="tFi-g2-8xV"/>
-                            <constraint firstItem="bJ7-UX-qPr" firstAttribute="leading" secondItem="BU8-Fd-2Wn" secondAttribute="leading" id="xdb-i0-8Hj"/>
-                            <constraint firstItem="BU8-Fd-2Wn" firstAttribute="trailing" secondItem="bJ7-UX-qPr" secondAttribute="trailing" id="xdf-XV-HPq"/>
+                            <constraint firstItem="bJ7-UX-qPr" firstAttribute="leading" secondItem="q4m-d4-18p" secondAttribute="leading" id="xdb-i0-8Hj"/>
+                            <constraint firstAttribute="trailing" secondItem="bJ7-UX-qPr" secondAttribute="trailing" id="xdf-XV-HPq"/>
                             <constraint firstItem="BU8-Fd-2Wn" firstAttribute="trailing" secondItem="dvs-Ik-dDH" secondAttribute="trailing" id="zef-V8-KNH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EHn-gW-uMA">
+                    <navigationItem key="navigationItem" title="Today" id="EHn-gW-uMA">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="refresh" id="sCp-Xm-QEg">
                             <connections>
                                 <action selector="refreshButton" destination="Fp5-pf-tvJ" id="fHF-Ga-ifP"/>
@@ -188,33 +190,35 @@
             <objects>
                 <viewController storyboardIdentifier="AddCityVC" id="xcO-lI-56S" customClass="AddCityViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cMM-gZ-2VE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeY-AI-1bW" customClass="GradientView" customModule="Weather" customModuleProvider="target">
-                                <rect key="frame" x="41.5" y="293" width="331" height="265"/>
+                                <rect key="frame" x="41.333333333333343" y="217" width="331.33333333333326" height="265"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPp-mO-eeV">
-                                        <rect key="frame" x="123" y="19.5" width="85.5" height="27.5"/>
+                                        <rect key="frame" x="123" y="19.333333333333343" width="85.333333333333314" height="27.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" systemColor="systemBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter City name you Wish to add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lev-HF-eda">
-                                        <rect key="frame" x="41.5" y="56" width="248" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="baku" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-mJ-ZzG">
-                                        <rect key="frame" x="49.5" y="95.5" width="232" height="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter city name you wish to add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lev-HF-eda">
+                                        <rect key="frame" x="44.666666666666671" y="56" width="242.33333333333331" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-mJ-ZzG">
+                                        <rect key="frame" x="49.666666666666657" y="95.666666666666686" width="231.99999999999997" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQm-ec-sxV" customClass="LoadingButtonView" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="140.5" y="167" width="50" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <rect key="frame" x="140.66666666666666" y="167.33333333333331" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="JNY-NJ-p1Q"/>
                                             <constraint firstAttribute="width" secondItem="wQm-ec-sxV" secondAttribute="height" multiplier="1:1" id="joW-W9-6c4"/>
@@ -236,7 +240,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHk-00-2NM">
-                                <rect key="frame" x="41.5" y="84" width="331" height="83"/>
+                                <rect key="frame" x="41.333333333333343" y="40.000000000000007" width="331.33333333333326" height="82.666666666666686"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Occured" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2U4-0W-TWW">
                                         <rect key="frame" x="20" y="17" width="123" height="24"/>
@@ -245,13 +249,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City with that name was not found!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBc-SC-glC">
-                                        <rect key="frame" x="20" y="43.5" width="264" height="21"/>
+                                        <rect key="frame" x="20" y="43.333333333333329" width="264" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2U4-0W-TWW" secondAttribute="trailing" constant="20" symbolic="YES" id="7RL-rk-v3B"/>
                                     <constraint firstItem="2U4-0W-TWW" firstAttribute="leading" secondItem="RHk-00-2NM" secondAttribute="leading" constant="20" id="E3j-WE-HSh"/>
@@ -265,14 +269,27 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ahj-df-Msf"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="oeY-AI-1bW" firstAttribute="centerY" secondItem="cMM-gZ-2VE" secondAttribute="centerY" multiplier="0.95" id="5La-Wr-ceX"/>
+                            <constraint firstItem="oeY-AI-1bW" firstAttribute="centerY" secondItem="cMM-gZ-2VE" secondAttribute="centerY" multiplier="0.95" id="5La-Wr-ceX">
+                                <variation key="heightClass=compact-widthClass=regular" constant="20"/>
+                            </constraint>
                             <constraint firstItem="oeY-AI-1bW" firstAttribute="width" secondItem="cMM-gZ-2VE" secondAttribute="width" multiplier="0.8" id="B4W-Pa-LZP"/>
                             <constraint firstItem="oeY-AI-1bW" firstAttribute="centerX" secondItem="cMM-gZ-2VE" secondAttribute="centerX" id="Su5-vS-Mzg"/>
                             <constraint firstItem="RHk-00-2NM" firstAttribute="centerX" secondItem="cMM-gZ-2VE" secondAttribute="centerX" id="cbg-yR-Vy4"/>
-                            <constraint firstItem="RHk-00-2NM" firstAttribute="top" secondItem="ahj-df-Msf" secondAttribute="top" constant="40" id="juV-bz-B97"/>
+                            <constraint firstItem="RHk-00-2NM" firstAttribute="top" secondItem="ahj-df-Msf" secondAttribute="top" constant="40" id="juV-bz-B97">
+                                <variation key="heightClass=compact-widthClass=regular" constant="10"/>
+                            </constraint>
+                            <constraint firstItem="RHk-00-2NM" firstAttribute="height" secondItem="cMM-gZ-2VE" secondAttribute="height" multiplier="0.2" priority="999" id="sCh-ZK-V5J"/>
+                            <constraint firstItem="oeY-AI-1bW" firstAttribute="height" secondItem="cMM-gZ-2VE" secondAttribute="height" multiplier="0.5" priority="999" id="xQ8-UW-VL9"/>
                             <constraint firstItem="RHk-00-2NM" firstAttribute="width" secondItem="cMM-gZ-2VE" secondAttribute="width" multiplier="0.8" id="zOF-LE-iSc"/>
                         </constraints>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="zOF-LE-iSc"/>
+                                <exclude reference="B4W-Pa-LZP"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="errorBanner" destination="RHk-00-2NM" id="5mF-2h-Mlt"/>
@@ -313,7 +330,7 @@
                     <tabBarItem key="tabBarItem" title="Forecast" image="tab_forecast" id="0BT-xf-m9L"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aQC-Qr-HkK">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -332,7 +349,7 @@
                     <tabBarItem key="tabBarItem" title="Today" image="tab_today" id="sJg-Rx-V1G"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6UQ-7B-h75">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -358,17 +375,17 @@
         <namedColor name="bg-gradient-end">
             <color red="0.24705882352941178" green="0.32549019607843138" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <namedColor name="bg-gradient-start">
+            <color red="0.40000000000000002" green="0.51372549019607838" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

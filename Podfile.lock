@@ -1,26 +1,22 @@
 PODS:
-  - iCarousel (1.8.3)
   - KeychainSwift (19.0.0)
   - SDWebImage (5.10.3):
     - SDWebImage/Core (= 5.10.3)
   - SDWebImage/Core (5.10.3)
 
 DEPENDENCIES:
-  - iCarousel
   - KeychainSwift
   - SDWebImage
 
 SPEC REPOS:
   trunk:
-    - iCarousel
     - KeychainSwift
     - SDWebImage
 
 SPEC CHECKSUMS:
-  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   SDWebImage: e378178472b735e84b007bfb55514c97948a0598
 
-PODFILE CHECKSUM: 34179b795836c89d7c5cf9a557980ea3dc396757
+PODFILE CHECKSUM: 4deaec93a04c087d4dc292b7416032a64875e9aa
 
 COCOAPODS: 1.10.1

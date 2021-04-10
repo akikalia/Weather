@@ -7,5 +7,4 @@ target 'Weather' do
   # Pods for Weather
   pod 'KeychainSwift'
   pod 'SDWebImage'
-  pod 'iCarousel'
 end
