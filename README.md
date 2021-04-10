@@ -4,7 +4,7 @@ Weather app for iOS using <a href="https://openweathermap.org">openWeatherMap<a/
 ### Result:
 
 
-![Weather gif](https://media.giphy.com/media/b5bw0N7isRue7psr0D/giphy.gif)
+![Weather gif]( <img src="./img/02.PNG" width="300" /> )
 
 <p float="left">
   
