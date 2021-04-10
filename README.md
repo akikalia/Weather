@@ -5,14 +5,14 @@ Weather app for iOS using https://openweathermap.org API. Project features use o
 
 ![Weather gif](https://media.giphy.com/media/b5bw0N7isRue7psr0D/giphy.gif)
 
-![Weather res](./img/01.png)
+![Weather res](./img/01.PNG)
 
-![Weather res](./img/02.png)
+![Weather res](./img/02.PNG)
 
-![Weather res](./img/03.png)
+![Weather res](./img/03.PNG)
 
-![Weather res](./img/04.png)
+![Weather res](./img/04.PNG)
 
-![Weather res](./img/05.png)
+![Weather res](./img/05.PNG)
 
-![Weather res](./img/06.png)
+![Weather res](./img/06.PNG)
